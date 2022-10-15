@@ -20,30 +20,62 @@ class Gasto {
 
 const cliente_1 = new Cliente (1, "banchero", "Armado de muebles", "42000")
 
- function agregarGasto() {
+ function agregarGastoACliente() {
     
     let agregarGasto = confirm("Desea agregar un gasto?")
 
     if (agregarGasto) {
 
         let id = prompt("Ingrese el ID del cliente")
-        let n = 1
+        let n = 0
 
         if( id == cliente_1.id) {
 
-        const gasto_1 = new Gasto (
+            agregarGasto()
 
-            prompt("Ingrese la descripcion del gasto") ,
-            prompt("Ingrese el monto del gasto"))
+        } else while (n <= 2) {
 
-            alert("Usted ingresó " + gasto_1.descripcionGasto + " con un monto de " + gasto_1.gasto + " pesos." + " Queda disponible " + cliente_1.presupuesto - gasto_1.gasto + " pesos.")
+            id = prompt("Ingrese un ID Correcto")
 
-        } else {
+            validarID(id)
 
-            alert("Ingrese un ID Valido")
+            n++
+
+            if (n == 2) {
+
+                alert("Intente mas tarde")
+                return false
+
+            }
     } 
 
     }
 }
 
-agregarGasto()
+function validarID(id) {
+
+    if (id == cliente_1.id) {
+
+        alert("Ingresaste " + " # " + cliente_1.id + " " + cliente_1.empresa + " - " + cliente_1.descripcion )
+        agregarGasto()
+        return true
+
+    } else {
+        alert("id incorrecto")
+        return false
+    }
+
+}
+
+function agregarGasto() {
+
+    const gasto_1 = new Gasto (
+
+        prompt("Ingrese la descripcion del gasto") ,
+        prompt("Ingrese el monto del gasto"))
+
+        alert("Usted ingresó " + gasto_1.descripcionGasto + " con un monto de $" + gasto_1.gasto + " Queda disponible $" + (cliente_1.presupuesto - gasto_1.gasto))
+
+}
+
+agregarGastoACliente()

@@ -1,6 +1,5 @@
 
 /** Pedido de datos para login **/
-
 class Usuario{
     constructor (user,pass) {
         this.user = user
@@ -14,42 +13,53 @@ function solicitarDatos() {
 
     let usuario = prompt("Ingrese su usuario") ;
     let password = prompt("ingrese su password") ;
-    let n = 1 ;
+    let n = 0 ;
 
-    let check = verificadorDatos(usuario, password)
+    if (verificadorDatos(usuario, password)) {
 
-    if (check) {
-        
-    
-    }  else while (n <= 2) { 
+        alert("bienvenido" + " " + usuario)
+
+    } else while (verificadorDatos(usuario, password) !== true || n <= 2) {
+
+        alert("usuario y/o contraseña incorrectos")
 
         usuario = prompt("Ingrese su usuario") ;
 
         password = prompt("ingrese su password") ; 
 
-        verificadorDatos(usuario,password) ;
+        if (verificadorDatos(usuario,password)) {
 
-        n++
+            alert("bienvenido" + " " + usuario)
+            return true
 
-        console.log (n)
+        } else {
+            
+            n++
+            console.log (n)
+            
+            if (n >= 3 && verificadorDatos(usuario, password) == false) {
 
-        if (n === 3 && user1.user !== usuario && user1.pass !== password) {
-            alert ("Intente mas tarde")
-            false
-        }
+                alert ("Intente mas tarde")
+                return false
+    
+            }
+        } 
+    }
 
-    } 
+        
 
 }
 
 function verificadorDatos(usuario,password) {
 
     if (user1.user === usuario && user1.pass === password) {
-        alert("bienvenido" + " " + usuario)
+
         return true ;
+
     } else {
-        alert("usuario y/o contraseña incorrectos")
+
         return false ;
+
     }
 }
 
