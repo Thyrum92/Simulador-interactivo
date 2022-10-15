@@ -33,21 +33,28 @@ const cliente_1 = new Cliente (1, "banchero", "Armado de muebles", "42000")
 
             agregarGasto()
 
-        } else while (n <= 2) {
+        } else while (n <= 3 || validarID(id) !== true) {
 
+            alert("Este id no se encuentra registrado")
             id = prompt("Ingrese un ID Correcto")
 
-            validarID(id)
+            if (validarID(id)) {
 
-            n++
+                agregarGasto()
 
-            if (n == 2) {
+            } else {
 
-                alert("Intente mas tarde")
-                return false
+                n++
+                console.log(n)
 
+                if (n >= 3 && validarID(id) == false) {
+
+                    alert("Intente mas tarde")
+                    return false
+    
+                }
             }
-    } 
+       } 
 
     }
 }
@@ -61,7 +68,6 @@ function validarID(id) {
         return true
 
     } else {
-        alert("id incorrecto")
         return false
     }
 
