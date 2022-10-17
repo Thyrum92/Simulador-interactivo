@@ -16,9 +16,8 @@ class Gasto {
     }
 }
 
-
-
 const cliente_1 = new Cliente (1, "banchero", "Armado de muebles", "42000")
+
 
  function agregarGastoACliente() {
     
@@ -29,7 +28,7 @@ const cliente_1 = new Cliente (1, "banchero", "Armado de muebles", "42000")
         let id = prompt("Ingrese el ID del cliente")
         let n = 0
 
-        if( id == cliente_1.id) {
+        if(validarID(id)) {
 
             agregarGasto()
 
