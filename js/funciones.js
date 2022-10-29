@@ -1,5 +1,6 @@
 
 const lista_de_usuarios = "listadoUsers"
+const lista_de_clientes = "listadoClientes"
 
 /*
 
@@ -160,34 +161,33 @@ function ingresarGasto() {
         
     }
 
-
+    **/
 
 // Funcion verificadora de usuarios, usada en index para login
     
 function verificadorDatos(usuario,password) {
 
-    if (user1.user === usuario && user1.pass === password) {
+    if (buscar_usuario(usuario) != false && buscar_usuario(password) != false) {
 
-        return true ;
+        alert("Bienvenido " + usuario)
 
     } else {
 
-        return false ;
+        alert(usuario + " no existe")
 
     }
+
 }
 
-    **/
+// Funcion para chequear datos del registro de usuario
 
-// Funcion para chequear datos del registro
-
-function validadorDatos(mail,usuario,pass) {
+function validadorDatos(mail,user,pass) {
 
     if (mail == "") {
 
         alert("Debe ingresar un mail")
 
-    } else if (usuario == "") {
+    } else if (user == "") {
 
         alert("Debe ingresar un usuario")
 
@@ -202,6 +202,7 @@ function validadorDatos(mail,usuario,pass) {
         if (busqueda != false) {
 
             alert("Este usuario ya existe")
+            return false
 
         } else {
             return true
@@ -216,7 +217,7 @@ function validadorDatos(mail,usuario,pass) {
 
 function buscar_usuario(mail) {
 
-    if (!localStorage.getItem(lista_de_usuarios)) {
+     if (!localStorage.getItem(lista_de_usuarios)) {
 
         return false
 
@@ -224,14 +225,21 @@ function buscar_usuario(mail) {
     
     let arrayLocal = JSON.parse(localStorage.getItem(lista_de_usuarios))
     let encontrado = false
+    let i = 0;
+ 
+    while (!encontrado && i != arrayLocal.length ){
 
-    if (arrayLocal.includes(mail)) {
+    if (arrayLocal[i].mail == mail) {
 
-        arrayLocal = mail
+      encontrado = arrayLocal[i];
 
     }
 
-    return encontrado
+    i++;
+
+  }
+
+  return encontrado;
 
 }
 
@@ -257,4 +265,82 @@ function registrarUsuarioNuevo(nuevo_usuario){
   
   
     }
+  }
+
+  // Funcion para chequear datos del registro de cliente
+
+function validadorDatosCliente(cliente,descripcion,presupuesto) {
+
+    if (cliente == "") {
+
+        alert("Debe ingresar un cliente")
+
+    } else if (descripcion == "") {
+
+        alert("Debe ingresar una descripcion del trabajo a realizar")
+
+    } else if (presupuesto == isNaN ) {
+
+        alert("Ingrese un presupuesto")
+
+    } 
+
+    console.log("perfecto")
+}
+
+// Funcion para buscar clientes en local storage
+
+function buscar_cliente(empresa) {
+
+    if (!localStorage.getItem(lista_de_clientes)) {
+
+       return false
+
+   } 
+   
+   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_clientes))
+   let encontrado = false
+   let i = 0;
+
+   while (!encontrado && i != arrayLocal.length ){
+
+   if (arrayLocal[i].empresa == empresa) {
+
+    encontrado = arrayLocal[i];
+
+   }
+
+   i++;
+
+ }
+
+ return encontrado;
+
+}
+
+// Funcion para registrar un nuevo usuario
+
+function registrarClienteNuevo(nuevo_cliente){
+
+    let i = 1
+    let item = localStorage.getItem(lista_de_clientes);
+    if (item){
+  
+      let clientesAlmacenados = JSON.parse(localStorage.getItem(lista_de_clientes));
+      clientesAlmacenados.push(nuevo_cliente.setID(i));
+  
+      let clientesAlmacenados_string = JSON.stringify(clientesAlmacenados);
+      localStorage.setItem(lista_de_clientes,clientesAlmacenados_string);
+  
+    }else{
+  
+      let clientesAlmacenados = new Array();
+      clientesAlmacenados.push(nuevo_cliente.setID(i));
+      let clientesAlmacenados_string = JSON.stringify(clientesAlmacenados);
+      localStorage.setItem(lista_de_clientes,clientesAlmacenados_string);
+  
+    }
+
+    i++
+
   }
