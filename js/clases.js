@@ -1,3 +1,5 @@
+// clase cliente, es para agregar un nuevo cliente
+
 class Cliente {
 
     constructor (empresa, descripcion, presupuesto) {
@@ -25,6 +27,8 @@ class Cliente {
 
 }
 
+//clase gasto para ingresar gastos por usuario
+
 class Gasto {
 
     constructor (descripcionGasto , gasto) {
@@ -34,6 +38,16 @@ class Gasto {
 
     }
 
+}
+
+// Clase usuario para login
+
+class Usuario{
+    constructor(nuevo_user) {
+        this.mail = nuevo_user.mail
+        this.user = nuevo_user.user
+        this.pass = nuevo_user.pass
+    }
 }
 
 // Arreglos

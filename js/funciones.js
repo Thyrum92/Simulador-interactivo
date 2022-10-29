@@ -1,41 +1,13 @@
 
-function solicitarDatosCliente() {
+const lista_de_usuarios = "listadoUsers"
+
+function solicitarDatosCliente(empresa, descripcion, presupuesto) {
 
     let check = true ;
 
-    while (check){
+    alert("Ingresaste estos datos: " + empresa + " - " + descripcion + " - " + presupuesto);
 
-
-        let mensaje = "" ;
-
-        let empresa = prompt("Ingrese nombre del cliente o empresa").trim();
-        let descripcion = prompt ("Ingrese descripcion del trabajo a realizar").trim();
-        let presupuesto = parseFloat(prompt ("Ingrese presupuesto")); 
-
-
-        while (!empresa){
-
-            mensaje += "\nDebe ingresar nombre del cliente o empresa";
-            cliente = prompt("Ingrese nombre del cliente o empresa").trim();
-
-        }
-
-        while (!descripcion){
-
-            mensaje += "\nDebe ingresar descripcion del trabajo a realizar" ;
-            descripcion = prompt ("Ingrese descripcion del trabajo a realizar").trim();
-        }
-
-        while (isNaN(presupuesto)){
-
-            mensaje += "\nDebe ingresar un valor numerico para el presupuesto";
-            presupuesto = parseFloat(prompt ("Ingrese un valor numerico para el presupuesto")); 
-
-        }
-
-        alert("Ingresaste estos datos: " + empresa + " - " + descripcion + " - " + presupuesto);
-
-        check = confirm ("Desea cargar de nuevo los datos");
+    check = confirm ("Desea cargar de nuevo los datos");
 
         if (check == false) {
 
@@ -46,9 +18,9 @@ function solicitarDatosCliente() {
 
         }
 
-    }
-
 function agregarNuevoID(empresa,descripcion,presupuesto) {
+
+    let count = 0
 
     let nuevoCliente = new Cliente (empresa,descripcion,presupuesto);
 
@@ -60,6 +32,9 @@ function agregarNuevoID(empresa,descripcion,presupuesto) {
         listaClientes.push(nuevoCliente);
 
     }
+
+    localStorage.setItem(count, nuevoCliente)
+    count ++
 
 }
 
@@ -182,3 +157,109 @@ function ingresarGasto() {
         }
         
     }
+
+// Funcion verificadora de usuarios, usada en index para login
+    
+function verificadorDatos(usuario,password) {
+
+    if (user1.user === usuario && user1.pass === password) {
+
+        return true ;
+
+    } else {
+
+        return false ;
+
+    }
+}
+
+// Funcion para chequear datos del registro
+
+function validadorDatos(mail,usuario,pass) {
+
+    if (mail == "") {
+
+        alert("Debe ingresar un mail")
+
+    } else if (usuario == "") {
+
+        alert("Debe ingresar un usuario")
+
+    } else if (pass == "") {
+
+        alert("Ingrese una contraseña")
+
+    }else {
+
+        let busqueda = buscar_usuario(mail)
+
+        if (busqueda != false) {
+
+            alert("Este usuario ya existe")
+
+        } else {
+            return true
+        }
+
+
+    }
+
+}
+
+// Funcion para buscar usuarios en local storage
+
+function buscar_usuario(mail) {
+
+    if (!localStorage.getItem(lista_de_usuarios)) {
+
+        return false
+
+    } 
+    
+    let arrayLocal = JSON.parse(localStorage.getItem(lista_de_usuarios))
+    let encontrado = false
+    //let cont = 0
+
+    if (arrayLocal.includes(mail)) {
+
+        arrayLocal = mail
+
+    }
+
+    //while (!encontrado && cont != info.length) {
+
+        //if(info[i].mail == mail) {
+        //encontrado = info[i]
+    //}
+    
+    //i++
+
+    //}
+
+    return encontrado
+
+}
+
+// Funcion para registrar un nuevo usuario
+
+function registrarUsuarioNuevo(nuevo_usuario){
+
+    let item = localStorage.getItem(lista_de_usuarios);
+    if (item){
+  
+      let usersAlmacenados = JSON.parse(localStorage.getItem(lista_de_usuarios));
+      usersAlmacenados.push(nuevo_usuario);
+  
+      let usersAlmacenados_string = JSON.stringify(usersAlmacenados);
+      localStorage.setItem(lista_de_usuarios,usersAlmacenados_string);
+  
+    }else{
+  
+      let usersAlmacenados = new Array();
+      usersAlmacenados.push(nuevo_usuario);
+      let usersAlmacenados_string = JSON.stringify(usersAlmacenados);
+      localStorage.setItem(lista_de_usuarios,usersAlmacenados_string);
+  
+  
+    }
+  }
