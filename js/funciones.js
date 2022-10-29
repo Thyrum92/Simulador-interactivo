@@ -1,6 +1,8 @@
 
 const lista_de_usuarios = "listadoUsers"
 
+/*
+
 function solicitarDatosCliente(empresa, descripcion, presupuesto) {
 
     let check = true ;
@@ -158,6 +160,8 @@ function ingresarGasto() {
         
     }
 
+
+
 // Funcion verificadora de usuarios, usada en index para login
     
 function verificadorDatos(usuario,password) {
@@ -172,6 +176,8 @@ function verificadorDatos(usuario,password) {
 
     }
 }
+
+    **/
 
 // Funcion para chequear datos del registro
 
@@ -218,23 +224,12 @@ function buscar_usuario(mail) {
     
     let arrayLocal = JSON.parse(localStorage.getItem(lista_de_usuarios))
     let encontrado = false
-    //let cont = 0
 
     if (arrayLocal.includes(mail)) {
 
         arrayLocal = mail
 
     }
-
-    //while (!encontrado && cont != info.length) {
-
-        //if(info[i].mail == mail) {
-        //encontrado = info[i]
-    //}
-    
-    //i++
-
-    //}
 
     return encontrado
 

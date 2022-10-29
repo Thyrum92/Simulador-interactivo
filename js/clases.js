@@ -1,3 +1,5 @@
+/** 
+
 // clase cliente, es para agregar un nuevo cliente
 
 class Cliente {
@@ -40,6 +42,16 @@ class Gasto {
 
 }
 
+// Arreglos
+
+const listaClientes = new Array() ;
+
+const listaGastos = new Array() ;
+
+*/
+
+
+
 // Clase usuario para login
 
 class Usuario{
@@ -50,8 +62,3 @@ class Usuario{
     }
 }
 
-// Arreglos
-
-const listaClientes = new Array() ;
-
-const listaGastos = new Array() ;
