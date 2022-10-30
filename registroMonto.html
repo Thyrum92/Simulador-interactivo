@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de clientes</title>
+    <title>Registrar Gasto</title>
     <link rel="stylesheet" href="./css/estilos.css">
 </head>
 <body>
     <header class="backgroundNav">
-        <h2 class="centroText backgroundTit sombraBlanca">Registro de Clientes</h1>
+        <h2 class="centroText backgroundTit sombraBlanca">Registro de gastos</h1>
             <div class="iconMenu">
                 <img id="iconMenu" src="./img/menu-hamburger.png">
                 <div class="contenMenu active" id="menu">
@@ -23,15 +23,16 @@
             </div>
     </header>
     <main class="contenedor">
-        <section class="borde contenedor centro">
+        <section class="borde2 contenedor centro">
             <div class="centro">
-                <h2 class="centroText sombraBlanca titulo2">Ingresa tu cliente</h2>
+                <h2 class="centroText sombraBlanca">Registra tu gasto</h2>
         <!-- Formulario de Ingreso de clientes -->
                 <form action="">
-                    <input id="cliente" type="text" placeholder="Ingresar Cliente"><br>
-                    <input id="trabajo" type="text" placeholder="Ingresar Tipo de trabajo"><br>
-                    <input id="presupuesto" type="text" placeholder="Ingresar Presupuesto"><br>
-                    <button id="botonIngreso" type="submit" >Ingresar</button>
+                    <input class="backgroundBoton" id="buscarCliente" type="text"placeholder="Buscar Cliente"><br>
+                    <input class="backgroundBoton" id= "buscarID" type="text" placeholder="Buscar ID"><br>
+                    <input class="backgroundBoton" id="Monto" type="text" placeholder="Ingresar Monto"><br>
+                    <textarea class="backgroundBoton" id="Comentario" name="Comentarios" cols="30" rows="10" placeholder="Comentarios"></textarea><br>  
+                    <input id="botonMonto" type="submit" value="Ingresar">
                     <input type="reset" value="Limpiar Formulario">
             </div>
         </section>
@@ -39,8 +40,9 @@
     <footer class="backgroundNav">
         <h3 class="textFooter centroText">By <a href="#">thyrum</a> 2022</h3>
     </footer>
-    <script src="./js/registroID.js"></script>
+    <script src="./js/ingreso_gasto.js"></script>
     <script src="./js/clases.js"></script>
+    <script src="./js/arreglos.js"></script>
     <script src="./js/funciones.js"></script>
     <script src="./js/burger_menu.js"></script>
 </body>

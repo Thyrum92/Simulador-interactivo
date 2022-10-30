@@ -471,3 +471,42 @@ function registrarClienteNuevo(nuevo_cliente){
     }
 
   }
+
+// Funcion para validar datos del Monto
+
+function validadorDatosMonto(buscarCliente,buscarID,monto,comentario) {
+
+    if (buscarCliente == "") {
+
+        alert("Debe ingresar un cliente")
+        return false
+
+    } else if (buscarID == "") {
+
+        alert("Debe ingresar un ID")
+        return false
+
+    }else if (monto == "" || !parseInt(monto)) {
+
+        alert("Ingrese un gasto, recuerda que el gasto tiene que ser un numero")
+        return false
+
+    } else if (comentario == "") {
+
+        alert("Ingrese una descripcion del gasto")
+        return false
+
+    } 
+
+    let rta = confirm("Ingresaste " + buscarCliente + " - " + buscarID + " - " + monto + " - " + comentario + " , es correcto?")
+
+    if (rta) {
+
+        return true
+
+    } 
+
+    return false
+
+    
+}
