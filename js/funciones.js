@@ -165,15 +165,17 @@ function ingresarGasto() {
 
 // Funcion verificadora de usuarios, usada en index para login
     
-function verificadorDatos(usuario,password) {
+function verificadorDatos(user,pass) {
 
-    if (buscar_usuario(usuario) != false && buscar_usuario(password) != false) {
+    if (buscar_user(user) != false && buscar_pass(pass) != false) {
 
-        alert("Bienvenido " + usuario)
+        alert("Bienvenido " + user)
+        return true
 
     } else {
 
-        alert(usuario + " no existe")
+        alert("Usuario o contraseña incorrectos")
+        return false
 
     }
 
@@ -186,18 +188,21 @@ function validadorDatos(mail,user,pass) {
     if (mail == "") {
 
         alert("Debe ingresar un mail")
+        return false
 
     } else if (user == "") {
 
         alert("Debe ingresar un usuario")
+        return false
 
     } else if (pass == "") {
 
         alert("Ingrese una contraseña")
+        return false
 
     }else {
 
-        let busqueda = buscar_usuario(mail)
+        let busqueda = buscar_mail(mail)
 
         if (busqueda != false) {
 
@@ -215,7 +220,7 @@ function validadorDatos(mail,user,pass) {
 
 // Funcion para buscar usuarios en local storage
 
-function buscar_usuario(mail) {
+function buscar_mail(mail) {
 
      if (!localStorage.getItem(lista_de_usuarios)) {
 
@@ -231,7 +236,7 @@ function buscar_usuario(mail) {
 
     if (arrayLocal[i].mail == mail) {
 
-      encontrado = arrayLocal[i];
+      encontrado = arrayLocal[i].mail;
 
     }
 
@@ -240,6 +245,62 @@ function buscar_usuario(mail) {
   }
 
   return encontrado;
+
+}
+
+function buscar_user(user) {
+
+    if (!localStorage.getItem(lista_de_usuarios)) {
+
+       return false
+
+   } 
+   
+   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_usuarios))
+   let encontrado = false
+   let i = 0;
+
+   while (!encontrado && i != arrayLocal.length ){
+
+   if (arrayLocal[i].user == user) {
+
+     encontrado = arrayLocal[i].user;
+
+   }
+
+   i++;
+
+ }
+
+ return encontrado;
+
+}
+
+function buscar_pass(pass) {
+
+    if (!localStorage.getItem(lista_de_usuarios)) {
+
+       return false
+
+   } 
+   
+   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_usuarios))
+   let encontrado = false
+   let i = 0;
+
+   while (!encontrado && i != arrayLocal.length ){
+
+   if (arrayLocal[i].pass == pass) {
+
+     encontrado = arrayLocal[i].pass;
+
+   }
+
+   i++;
+
+ }
+
+ return encontrado;
 
 }
 
@@ -274,23 +335,36 @@ function validadorDatosCliente(cliente,descripcion,presupuesto) {
     if (cliente == "") {
 
         alert("Debe ingresar un cliente")
+        return false
 
     } else if (descripcion == "") {
 
         alert("Debe ingresar una descripcion del trabajo a realizar")
+        return false
 
-    } else if (presupuesto == isNaN ) {
+    }else if (presupuesto == "" || !parseInt(presupuesto)) {
 
-        alert("Ingrese un presupuesto")
+        alert("Ingrese un presupuesto, recuerda que el presupuesto tiene que ser un numero")
+        return false
 
     } 
 
-    console.log("perfecto")
+    let rta = confirm("Ingresaste " + cliente + " - " + descripcion + " - " + presupuesto + " , es correcto?")
+
+    if (rta) {
+
+        return true
+
+    } 
+
+    return false
+
+    
 }
 
 // Funcion para buscar clientes en local storage
 
-function buscar_cliente(empresa) {
+function buscar_empresa(empresa) {
 
     if (!localStorage.getItem(lista_de_clientes)) {
 
@@ -306,7 +380,7 @@ function buscar_cliente(empresa) {
 
    if (arrayLocal[i].empresa == empresa) {
 
-    encontrado = arrayLocal[i];
+    encontrado = arrayLocal[i].empresa;
 
    }
 
@@ -318,16 +392,71 @@ function buscar_cliente(empresa) {
 
 }
 
-// Funcion para registrar un nuevo usuario
+function buscar_descripcion(descripcion) {
+
+    if (!localStorage.getItem(lista_de_clientes)) {
+
+       return false
+
+   } 
+   
+   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_clientes))
+   let encontrado = false
+   let i = 0;
+
+   while (!encontrado && i != arrayLocal.length ){
+
+   if (arrayLocal[i].descripcion == descripcion) {
+
+    encontrado = arrayLocal[i].descripcion;
+
+   }
+
+   i++;
+
+ }
+
+ return encontrado;
+
+}
+
+function buscar_presupuesto(presupuesto) {
+
+    if (!localStorage.getItem(lista_de_clientes)) {
+
+       return false
+
+   } 
+   
+   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_clientes))
+   let encontrado = false
+   let i = 0;
+
+   while (!encontrado && i != arrayLocal.length ){
+
+   if (arrayLocal[i].presupuesto == presupuesto) {
+
+    encontrado = arrayLocal[i].presupuesto;
+
+   }
+
+   i++;
+
+ }
+
+ return encontrado;
+
+}
+
+// Funcion para registrar un nuevo cliente
 
 function registrarClienteNuevo(nuevo_cliente){
 
-    let i = 1
     let item = localStorage.getItem(lista_de_clientes);
     if (item){
   
       let clientesAlmacenados = JSON.parse(localStorage.getItem(lista_de_clientes));
-      clientesAlmacenados.push(nuevo_cliente.setID(i));
+      clientesAlmacenados.push(nuevo_cliente);
   
       let clientesAlmacenados_string = JSON.stringify(clientesAlmacenados);
       localStorage.setItem(lista_de_clientes,clientesAlmacenados_string);
@@ -335,12 +464,10 @@ function registrarClienteNuevo(nuevo_cliente){
     }else{
   
       let clientesAlmacenados = new Array();
-      clientesAlmacenados.push(nuevo_cliente.setID(i));
+      clientesAlmacenados.push(nuevo_cliente);
       let clientesAlmacenados_string = JSON.stringify(clientesAlmacenados);
       localStorage.setItem(lista_de_clientes,clientesAlmacenados_string);
   
     }
-
-    i++
 
   }

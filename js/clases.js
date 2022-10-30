@@ -21,21 +21,14 @@ class User {
 
 class Cliente {
 
-    constructor (empresa, descripcion, presupuesto) {
+    constructor (nuevo_cliente) {
 
-        this.empresa = empresa ;
-        this.descripcion = descripcion ;
-        this.presupuesto = parseInt(presupuesto) ;
-        this.id = -1 ;
-        this.activo = -1;
+        this.empresa = nuevo_cliente.empresa
+        this.descripcion = nuevo_cliente.descripcion
+        this.presupuesto = nuevo_cliente.presupuesto
+        this.id = nuevo_cliente.id
+        this.activo = nuevo_cliente.activo
 
-    }
-    
-    setID(nuevoID) {
-    
-        this.id = nuevoID ;
-        this.activo = true ;
-    
     }
 
     mostrarDescripcion() {
