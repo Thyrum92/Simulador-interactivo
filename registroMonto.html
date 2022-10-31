@@ -27,9 +27,13 @@
             <div class="centro">
                 <h2 class="centroText sombraBlanca">Registra tu gasto</h2>
         <!-- Formulario de Ingreso de clientes -->
-                <form action="">
-                    <input class="backgroundBoton" id="buscarCliente" type="text"placeholder="Buscar Cliente"><br>
-                    <input class="backgroundBoton" id= "buscarID" type="text" placeholder="Buscar ID"><br>
+                <form name="formularioMonto" action="">
+                    <select name="" id="">
+                        <input class="backgroundBoton" id="buscarCliente" type="text"placeholder="Buscar Cliente"><br>
+                    </select>
+                    <select name="" id="">
+                        <input class="backgroundBoton" id= "buscarDescripcion" type="text" placeholder="Buscar Descripcion"><br>
+                    </select>
                     <input class="backgroundBoton" id="Monto" type="text" placeholder="Ingresar Monto"><br>
                     <textarea class="backgroundBoton" id="Comentario" name="Comentarios" cols="30" rows="10" placeholder="Comentarios"></textarea><br>  
                     <input id="botonMonto" type="submit" value="Ingresar">
@@ -42,7 +46,6 @@
     </footer>
     <script src="./js/ingreso_gasto.js"></script>
     <script src="./js/clases.js"></script>
-    <script src="./js/arreglos.js"></script>
     <script src="./js/funciones.js"></script>
     <script src="./js/burger_menu.js"></script>
 </body>

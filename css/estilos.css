@@ -20,12 +20,14 @@ footer {
 
 .borde {
     border: solid black;
+    border-radius: 15px 15px 15px;
     width: 250px;
     height: 180px;
     background-color: rgb(48, 180, 253);
 }
 .borde2 {
     border: solid black;
+    border-radius: 15px 15px 15px;
     width: 300px;
     height: 350px;
     background-color: rgb(48, 180, 253);
