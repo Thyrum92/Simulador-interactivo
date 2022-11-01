@@ -189,7 +189,7 @@ function validadorDatosCliente(cliente,descripcion,presupuesto) {
 
     } 
 
-    let rta = confirm("Ingresaste " + cliente + " - " + descripcion + " - " + presupuesto + " , es correcto?")
+    let rta = confirm("Ingresaste " + cliente + " - " + descripcion + " - " + "$" + presupuesto + " , es correcto?")
 
     if (rta) {
 
@@ -338,7 +338,7 @@ function validadorDatosMonto(buscarCliente,buscarID,monto,comentario) {
 
     } 
 
-    let rta = confirm("Ingresaste " + buscarCliente + " - " + buscarID + " - " + monto + " - " + comentario + " , es correcto?")
+    let rta = confirm("Ingresaste " + buscarCliente + " - " + buscarID + " - " + "$" + monto + " - " + comentario + " , es correcto?")
 
     if (rta) {
 
@@ -350,3 +350,4 @@ function validadorDatosMonto(buscarCliente,buscarID,monto,comentario) {
 
     
 }
+

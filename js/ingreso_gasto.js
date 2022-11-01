@@ -8,30 +8,63 @@ let botonMonto = document.getElementById("botonMonto")
 
 lista_de_clientes = "listadoClientes"
 
-// creacion de arrays para la pagina de registro de monto
+// aca estoy creando un array para usar como opciones a la hora de buscar un cliente en el formulario.
 
 let arregloClientes = new Array
 
-let arrayLocalC = JSON.parse(localStorage.getItem(lista_de_clientes))
+let arrayLocalC = JSON.parse(localStorage.getItem(lista_de_clientes)) || []
 
 arrayLocalC.forEach( (i) => {
-arregloClientes.push(arrayLocalC[i].empresa)
-})
-console.log(arregloClientes)
+arregloClientes.push(i.empresa)
 
+})
+
+// aca estoy creando la funcion que se encarga de mostrarme las opciones del array de ingreso_gasto.js y la ejecuto.
+
+function opcionesClientes(array, label) {
+
+    let elementos = "<option selected disables>--Seleccione--</option>"
+
+    for (let i=0; i < array.length; i++) {
+        elementos += '<option value="' + array[i] +'">' + array[i] +'</option>'
+
+    }
+
+    console.log(elementos)
+    label.innerHTML = elementos
+
+}
+opcionesClientes(arregloClientes, buscarClienteIn)
 
 let arregloDescripciones = new Array
 
-let arrayLocalD = JSON.parse(localStorage.getItem(lista_de_clientes))
+let arrayLocalD = JSON.parse(localStorage.getItem(lista_de_clientes)) || []
 
 for (i=0 ; i > arrayLocalD.lengh ; i++) {
 
-    arregloDescripciones.push(arrayLocalD[i].descripcion)
+    arregloDescripciones.push(i.descripcion)
 
 }
 
+// Evento de cambio para que impacte en la label de descripcion
 
-// Evento de click para agregar gastos
+buscarClienteIn.addEventListener("change", () => {
+
+    let valor = buscarClienteIn.value
+    let arrayBuscado = arrayLocalC.filter((e) => e.empresa.includes(valor))
+    let opcionesEncontradas = new Array
+
+    arrayBuscado.forEach( (i) => {
+        opcionesEncontradas.push(i.descripcion)
+    })
+    
+    opcionesClientes(opcionesEncontradas, buscarDescripcionIn)
+
+})
+
+
+
+// Evento de click para agregar gastos al cliente y descipcion seleccionados
 
 botonMonto.addEventListener("click", (e) => {
 

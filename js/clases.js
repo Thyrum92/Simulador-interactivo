@@ -28,8 +28,6 @@ class Cliente {
         this.presupuesto = nuevo_cliente.presupuesto
         this.id = nuevo_cliente.id
         this.activo = nuevo_cliente.activo
-        this.gasto = 0
-        this.ganancia = this.presupuesto - this.gasto
 
     }
 

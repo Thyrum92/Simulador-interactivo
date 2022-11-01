@@ -1,4 +1,3 @@
-debugger
 let inputCliente = document.getElementById("cliente")
 let inputTrabajo = document.getElementById("trabajo")
 let inputPresupuesto = document.getElementById("presupuesto")

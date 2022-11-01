@@ -28,12 +28,14 @@
                 <h2 class="centroText sombraBlanca">Registra tu gasto</h2>
         <!-- Formulario de Ingreso de clientes -->
                 <form name="formularioMonto" action="">
-                    <select name="" id="">
-                        <input class="backgroundBoton" id="buscarCliente" type="text"placeholder="Buscar Cliente"><br>
-                    </select>
-                    <select name="" id="">
-                        <input class="backgroundBoton" id= "buscarDescripcion" type="text" placeholder="Buscar Descripcion"><br>
-                    </select>
+                    <label class="backgroundBoton" for="buscarCliente">Cliente: </label>
+                    <select name="" id="buscarCliente">
+                        
+                    </select><br>
+                    <label class="backgroundBoton"  for="buscarDescripcion">Descripcion: </label>
+                    <select name="" id="buscarDescripcion">
+                        
+                    </select><br>
                     <input class="backgroundBoton" id="Monto" type="text" placeholder="Ingresar Monto"><br>
                     <textarea class="backgroundBoton" id="Comentario" name="Comentarios" cols="30" rows="10" placeholder="Comentarios"></textarea><br>  
                     <input id="botonMonto" type="submit" value="Ingresar">
@@ -45,8 +47,8 @@
         <h3 class="textFooter centroText">By <a href="#">thyrum</a> 2022</h3>
     </footer>
     <script src="./js/ingreso_gasto.js"></script>
-    <script src="./js/clases.js"></script>
     <script src="./js/funciones.js"></script>
+    <script src="./js/clases.js"></script>
     <script src="./js/burger_menu.js"></script>
 </body>
 </html>
