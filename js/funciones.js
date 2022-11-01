@@ -351,3 +351,23 @@ function validadorDatosMonto(buscarCliente,buscarID,monto,comentario) {
     
 }
 
+function registrarGastoNuevo(nuevo_gasto){
+
+    let item = localStorage.getItem(lista_de_gastos);
+    if (item){
+  
+      let gastosAlmacenados = JSON.parse(localStorage.getItem(lista_de_gastos));
+      gastosAlmacenados.push(nuevo_gasto);
+  
+      let gastosAlmacenados_string = JSON.stringify(gastosAlmacenados);
+      localStorage.setItem(lista_de_gastos,gastosAlmacenados_string);
+  
+    }else{
+  
+      let gastosAlmacenados = new Array();
+      gastosAlmacenados.push(nuevo_gasto);
+      let gastosAlmacenados_string = JSON.stringify(gastosAlmacenados);
+      localStorage.setItem(lista_de_gastos,gastosAlmacenados_string);
+  
+    }
+  }

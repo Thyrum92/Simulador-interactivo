@@ -77,17 +77,31 @@ class Client {
 
 class Gasto {
 
-    constructor (descripcionGasto , gasto) {
+    constructor (empresa, descripcion, gasto , descripcionGasto) {
 
+        this.empresa = empresa;
+        this.descripcion = descripcion;
+        this.gasto = gasto ;
         this.descripcionGasto = descripcionGasto ;
-        this.gasto = parseInt(gasto) ;
+        
+    }
+
+    mostrarGasto() {
+
+        return ("ingresaste " + this.empresa + " - " + this.descripcion + " $" + this.gasto + " que corresponde a " + this.descripcionGasto)
 
     }
 
 }
 
+class Gastos {
+    constructor(nuevo_gasto) {
+        this.gasto = nuevo_gasto.gasto
+        this.descripcionGasto = nuevo_gasto.descripcionGasto
+
+    }
+}
+
 // Arreglos
 
 const listaClientes = new Array() ;
-
-const listaGastos = new Array() ;

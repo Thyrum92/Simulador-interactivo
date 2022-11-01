@@ -1,5 +1,5 @@
 // Creacion de variables para usar en el evento de click
-
+const lista_de_gastos = "listadoGastos"
 let buscarClienteIn = document.getElementById("buscarCliente")
 let buscarDescripcionIn = document.getElementById("buscarDescripcion")
 let montoIn = document.getElementById("Monto")
@@ -70,11 +70,20 @@ botonMonto.addEventListener("click", (e) => {
 
     e.preventDefault()
 
-    let buscarCliente = buscarClienteIn.value
-    let buscarDescripcion = buscarDescripcionIn.value
-    let monto = montoIn.value
+    let empresa = buscarClienteIn.value
+    let descripcion = buscarDescripcionIn.value
+    let gasto = parseFloat(montoIn.value)
     let comentario = comentarioIn.value
 
+    gasto || alert("tenes que ingresar tu gasto, el mismo tiene que ser un numero.")
+    comentario || alert("Tiene que ingresar un comentario")
+
+    const nuevo_gasto = new Gasto(empresa,descripcion,gasto,comentario)
+    const listaGastos = new Gastos(nuevo_gasto)
+
+    registrarGastoNuevo(listaGastos)
+
+    console.log(listaGastos)
 
 })
 
