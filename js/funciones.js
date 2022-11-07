@@ -316,7 +316,7 @@ function registrarClienteNuevo(nuevo_cliente){
 
 function validadorDatosMonto(buscarCliente,buscarID,monto,comentario) {
 
-    if (buscarCliente == "") {
+if (buscarCliente == "") {
 
         alert("Debe ingresar un cliente")
         return false
@@ -336,7 +336,7 @@ function validadorDatosMonto(buscarCliente,buscarID,monto,comentario) {
         alert("Ingrese una descripcion del gasto")
         return false
 
-    } 
+    }
 
     let rta = confirm("Ingresaste " + buscarCliente + " - " + buscarID + " - " + "$" + monto + " - " + comentario + " , es correcto?")
 

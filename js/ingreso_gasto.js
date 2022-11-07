@@ -62,6 +62,21 @@ buscarClienteIn.addEventListener("change", () => {
 
 })
 
+// Funcion para restar el gasto al presupuesto del cliente y mostrar cuanto queda del presupuesto.
+
+function restarPresupuesto(empresa,descripcion,gasto) {
+
+    let arrayClientes = JSON.parse(localStorage.getItem(lista_de_clientes))
+    let indiceClientes = arrayClientes.indexOf((arrayClientes.find((i) => i.descripcion == descripcion && i.empresa == empresa)))
+
+    arrayClientes[indiceClientes].presupuesto -= gasto
+
+    let arrayClientes_string = JSON.stringify(arrayClientes)
+    localStorage.setItem(lista_de_clientes,arrayClientes_string)
+
+    alert("Queda disponible $" + arrayClientes[indiceClientes].presupuesto)
+    
+}
 
 
 // Evento de click para agregar gastos al cliente y descipcion seleccionados
@@ -75,33 +90,23 @@ botonMonto.addEventListener("click", (e) => {
     let gasto = parseFloat(montoIn.value)
     let comentario = comentarioIn.value
 
+    
+
     gasto || alert("tenes que ingresar tu gasto, el mismo tiene que ser un numero.")
     comentario || alert("Tiene que ingresar un comentario")
 
     const nuevo_gasto = new Gasto(empresa,descripcion,gasto,comentario)
     const listaGastos = new Gastos(nuevo_gasto)
 
-    registrarGastoNuevo(listaGastos)
-
-    console.log(listaGastos)
+    let resp = confirm("Ingresaste " + empresa + " - " + descripcion + " - $" + gasto + " - " + comentario + " es correcto?")
+    
+    if (resp) {
+        registrarGastoNuevo(listaGastos)
+        alert("Gasto ingresado correctamente")
+    } else {
+        return false
+    }
+    
+    restarPresupuesto(empresa,descripcion,gasto)
 
 })
-
-
-
-
-/* let nuevoID = 1 ;
-
-agregarNuevoID("Banchero", "Armado de muebles", 42000)
-
-let respuestaGasto = confirm("Desea agregar un nuevo gasto?")
-
-if(respuestaGasto) {
-
-ingresarGasto()
-
-} else {
-
-    alert("Gracias por usar nuestro sistema")
-
-} */

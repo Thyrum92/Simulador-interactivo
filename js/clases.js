@@ -96,6 +96,9 @@ class Gasto {
 
 class Gastos {
     constructor(nuevo_gasto) {
+
+        this.empresa = nuevo_gasto.empresa;
+        this.descripcion = nuevo_gasto.descripcion;
         this.gasto = nuevo_gasto.gasto
         this.descripcionGasto = nuevo_gasto.descripcionGasto
 
