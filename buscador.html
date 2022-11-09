@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Clientes</title>
+    <link rel="stylesheet" href="./css/estilos.css">
+</head>
+<body>
+    <header class="backgroundNav">
+        <h1 class="centroText backgroundTit sombraBlanca">Bienvenido</h1>
+        <div class="iconMenu">
+            <img id="iconMenu" src="./img/menu-hamburger.png">
+            <div class="contenMenu active" id="menu">
+                <ul>
+                    <a class="hipervinculo" href="./index.html"><li class="centroText">Inicio</li></a>
+                    <a class="hipervinculo" href="./registroID.html"><li class="centroText">Registrar ID</li></a>
+                    <a class="hipervinculo" href="./registroMonto.html"><li class="centroText">Registrar Monto</li></a>
+                    <a class="hipervinculo" href="./buscador.html"><li class="centroText">Buscar Clientes</li></a>
+                </ul>
+            </div>
+        </div>
+    <main class="contenedor">
+        <section class="borde contenedor centro">
+            <div class="centro">
+                <p>Buscá a tus clientes</p>
+                <!-- Formulario de Busqueda -->
+                <form name="formularioBuscador" action="">
+                    <label class="backgroundBoton" for="buscadorCliente">Cliente: </label>
+                    <select name="" id="buscadorCliente">
+
+                    </select><br>
+                    <label class="backgroundBoton"  for="buscadorDescripcion">Descripcion: </label>
+                    <select name="" id="buscadorDescripcion"> 
+    
+                    </select><br>
+
+                    <input type="submit" id="buscar" value="Buscar">
+                    <input type="submit" id="finalizar" value="Finalizar">
+                    <input type="reset" value="Limpiar Formulario"><br>
+            </div>
+        </section>
+    </main>
+    <footer class="backgroundNav">
+        <h3 class="textFooter centroText">By <a href="#">thyrum</a> 2022</h3>
+    </footer>
+    <script src="./js/burger_menu.js"></script>
+    <script src="./js/clases.js"></script>
+    <script src="./js/funciones.js"></script>
+    <script src="./js/buscar.js"></script>
+</body>
+</html>

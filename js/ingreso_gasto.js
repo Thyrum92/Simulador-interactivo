@@ -12,12 +12,20 @@ lista_de_clientes = "listadoClientes"
 
 let arregloClientes = new Array
 
+
 let arrayLocalC = JSON.parse(localStorage.getItem(lista_de_clientes)) || []
 
 arrayLocalC.forEach( (i) => {
 arregloClientes.push(i.empresa)
 
 })
+
+let arregloClientesReducido = arregloClientes.reduce((a,e) => {
+    if (!a.find(d=> d == e)) {
+        a.push(e)
+    }
+    return a;
+}, [])
 
 // aca estoy creando la funcion que se encarga de mostrarme las opciones del array de ingreso_gasto.js y la ejecuto.
 
@@ -34,7 +42,7 @@ function opcionesClientes(array, label) {
     label.innerHTML = elementos
 
 }
-opcionesClientes(arregloClientes, buscarClienteIn)
+opcionesClientes(arregloClientesReducido, buscarClienteIn)
 
 let arregloDescripciones = new Array
 
