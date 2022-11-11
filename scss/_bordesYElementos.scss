@@ -1,0 +1,38 @@
+.borde {
+    border: solid black;
+    border-radius: 15px 15px 15px;
+    width: 450px;
+    height: 250px;
+    background-color: white;
+}
+
+.contenedor {
+    position: relative;
+}
+
+.centroText {
+    text-align: center;
+    padding: 5px 0;
+}
+
+.margenVertical1 {
+
+    margin-bottom: 30px;
+
+}
+
+.margenVertical2 {
+    margin: 5px 0;
+}
+
+
+.centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.alargar {
+    width: 250px;
+}

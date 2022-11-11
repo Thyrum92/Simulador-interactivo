@@ -1,0 +1,41 @@
+// Colores
+
+$color1: rgb(0, 108, 102);
+$color2: rgb(6, 65, 120);
+$sombra1: rgb(66, 66, 66);
+$sombra2: rgb(42,42,42);
+
+.textFooter {
+    font-size: 14px;
+}
+
+.titulo2 {
+    font-size: 20px;
+}
+
+.hipervinculo {
+    text-decoration: none;
+    color: black;
+}
+
+.hipervinculo2 {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+body {
+    height: 100vh;
+    background-color: $color1;
+}
+
+header {
+    height: 35vh;
+}
+
+main {
+    height: 60vh;
+}
+
+footer {
+    height: 5vh;
+}

@@ -1,6 +1,8 @@
 const iconMenu = document.querySelector("#iconMenu")
 const menu = document.querySelector("#menu")
 
+// Evento para desplegar el menu
+
 iconMenu.addEventListener("click", (e) => {
 
     // Alternar estilos del icono

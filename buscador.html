@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/estilos.css">
 </head>
 <body>
-    <header class="backgroundNav">
+    <header>
         <h1 class="centroText backgroundTit sombraBlanca">Bienvenido</h1>
         <div class="iconMenu">
             <img id="iconMenu" src="./img/menu-hamburger.png">
@@ -21,18 +21,19 @@
                 </ul>
             </div>
         </div>
+    </header>
     <main class="contenedor">
         <section class="borde contenedor centro">
             <div class="centro">
-                <p>Buscá a tus clientes</p>
+                <h2 class="centroText sombraBlanca margenVertical1 alargar margenVertical1">Buscá a tus clientes</h2>
                 <!-- Formulario de Busqueda -->
                 <form name="formularioBuscador" action="">
-                    <label class="backgroundBoton" for="buscadorCliente">Cliente: </label>
-                    <select name="" id="buscadorCliente">
+                    <label class="backgroundBoton margenVertical2" for="buscadorCliente">Cliente: </label>
+                    <select class="margenVertical2" name="" id="buscadorCliente">
 
                     </select><br>
-                    <label class="backgroundBoton"  for="buscadorDescripcion">Descripcion: </label>
-                    <select name="" id="buscadorDescripcion"> 
+                    <label class="backgroundBoton margenVertical2"  for="buscadorDescripcion">Descripcion: </label>
+                    <select class="margenVertical2" name="" id="buscadorDescripcion"> 
     
                     </select><br>
 
@@ -43,7 +44,7 @@
         </section>
     </main>
     <footer class="backgroundNav">
-        <h3 class="textFooter centroText">By <a href="#">thyrum</a> 2022</h3>
+        <h3 class="textFooter centroText">By <a class="hipervinculo2" href="#">thyrum</a> 2022</h3>
     </footer>
     <script src="./js/burger_menu.js"></script>
     <script src="./js/clases.js"></script>

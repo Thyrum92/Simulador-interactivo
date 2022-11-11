@@ -3,8 +3,9 @@ let buscadorDescripcion = document.getElementById("buscadorDescripcion")
 let botonBuscar = document.getElementById("buscar")
 let botonFinalizar = document.getElementById("finalizar")
 
-let arregloClientes = new Array
+// Arreglo de clientes para utilizar en el formulario desplegable
 
+let arregloClientes = new Array
 
 let arrayLocalC = JSON.parse(localStorage.getItem(lista_de_clientes)) || []
 
