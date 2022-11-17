@@ -1,86 +1,33 @@
+// Constante de usuario logueado para guardar en el session storage
 
-const lista_de_usuarios = "listadoUsers"
-const lista_de_clientes = "listadoClientes"
+const usuario_logueado = "user_log"
 
+// funciones validadoras de usuario y pass general
 
-// Funcion verificadora de usuarios, usada en index para login
+async function buscarUserApi(user) {
+
+  const respApi = await fetch(apiReg)
+
+  const contenidoApi = await respApi.json()
+
+  if(!contenidoApi) {
     
-function verificadorDatos(user,pass) {
+    return false
 
-    if (buscar_user(user) != false && buscar_pass(pass) != false) {
+  }
 
-        alert("Bienvenido " + user)
-        return true
+  let encontrado = false
+  let i = 0
 
-    } else {
+  while(!encontrado && i != contenidoApi.length) {
 
-        alert("Usuario o contraseña incorrectos")
-        return false
+    if(contenidoApi[i].usuario == user) {
 
-    }
-
-}
-
-// Funcion para chequear datos del registro de usuario
-
-function validadorDatos(mail,user,pass) {
-
-    if (mail == "") {
-
-        alert("Debe ingresar un mail")
-        return false
-
-    } else if (user == "") {
-
-        alert("Debe ingresar un usuario")
-        return false
-
-    } else if (pass == "") {
-
-        alert("Ingrese una contraseña")
-        return false
-
-    }else {
-
-        let busqueda = buscar_mail(mail)
-
-        if (busqueda != false) {
-
-            alert("Este usuario ya existe")
-            return false
-
-        } else {
-            return true
-        }
-
-
-    }
-
-}
-
-// Funcion para buscar usuarios en local storage
-
-function buscar_mail(mail) {
-
-     if (!localStorage.getItem(lista_de_usuarios)) {
-
-        return false
+      encontrado = contenidoApi[i].usuario
 
     } 
-    
-    let arrayLocal = JSON.parse(localStorage.getItem(lista_de_usuarios))
-    let encontrado = false
-    let i = 0;
- 
-    while (!encontrado && i != arrayLocal.length ){
 
-    if (arrayLocal[i].mail == mail) {
-
-      encontrado = arrayLocal[i].mail;
-
-    }
-
-    i++;
+    i++
 
   }
 
@@ -88,89 +35,128 @@ function buscar_mail(mail) {
 
 }
 
-function buscar_user(user) {
+async function buscarPassApi(pass) {
 
-    if (!localStorage.getItem(lista_de_usuarios)) {
+  const respApi = await fetch(apiReg)
 
-       return false
+  const contenidoApi = await respApi.json()
 
-   } 
-   
-   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_usuarios))
-   let encontrado = false
-   let i = 0;
+  if(!contenidoApi) {
+    
+    return false
 
-   while (!encontrado && i != arrayLocal.length ){
-
-   if (arrayLocal[i].user == user) {
-
-     encontrado = arrayLocal[i].user;
-
-   }
-
-   i++;
-
- }
-
- return encontrado;
-
-}
-
-function buscar_pass(pass) {
-
-    if (!localStorage.getItem(lista_de_usuarios)) {
-
-       return false
-
-   } 
-   
-   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_usuarios))
-   let encontrado = false
-   let i = 0;
-
-   while (!encontrado && i != arrayLocal.length ){
-
-   if (arrayLocal[i].pass == pass) {
-
-     encontrado = arrayLocal[i].pass;
-
-   }
-
-   i++;
-
- }
-
- return encontrado;
-
-}
-
-// Funcion para registrar un nuevo usuario
-
-function registrarUsuarioNuevo(nuevo_usuario){
-
-    let item = localStorage.getItem(lista_de_usuarios);
-    if (item){
-  
-      let usersAlmacenados = JSON.parse(localStorage.getItem(lista_de_usuarios));
-      usersAlmacenados.push(nuevo_usuario);
-  
-      let usersAlmacenados_string = JSON.stringify(usersAlmacenados);
-      localStorage.setItem(lista_de_usuarios,usersAlmacenados_string);
-  
-    }else{
-  
-      let usersAlmacenados = new Array();
-      usersAlmacenados.push(nuevo_usuario);
-      let usersAlmacenados_string = JSON.stringify(usersAlmacenados);
-      localStorage.setItem(lista_de_usuarios,usersAlmacenados_string);
-  
-  
-    }
   }
 
-  // Funcion para chequear datos del registro de cliente
+  let encontrado = false
+  let i = 0
 
-function validadorDatosCliente(cliente,descripcion,presupuesto) {
+  while(!encontrado && i != contenidoApi.length) {
+
+    if(contenidoApi[i].contraseña == pass) {
+
+      encontrado = contenidoApi[i].contraseña
+
+    } 
+
+    i++
+
+  }
+
+  return encontrado;
+
+}
+
+// funciones buscadoras de clientes y presupuesto general
+
+async function buscarClienteApi(cliente,descripcion) {
+
+  const respApi = await fetch(apiRegClient)
+
+  const contenidoApi = await respApi.json()
+
+  if(!contenidoApi) {
+    
+    return false
+
+  }
+
+  let filtroCliente = contenidoApi.filter( (e) => e.cliente.includes(cliente));
+  let filtroClienteDescripcion = filtroCliente.filter( (e) => e.descripcion.includes(descripcion))
+
+  if (filtroClienteDescripcion == "") {
+
+    return false
+
+  }
+
+  return filtroClienteDescripcion
+
+}
+
+// LOGIN //
+
+// Funcion verificadora de usuarios para logIn y para guardar el user log en el session storage
+
+ 
+async function verificadorDatosApi(user,pass) {
+
+  if (user == "") {
+
+    alert("Debe ingresar un usuario")
+    return false
+
+} else if (pass == "") {
+
+    alert("Ingrese una contraseña")
+    return false
+
+}else {
+
+    let busqueda1 = await buscarUserApi(user)
+    let busqueda2 = await buscarPassApi(pass)
+
+    if (busqueda1 == user && busqueda2 == pass) {
+
+      let userLog = new Array();
+      userLog.push(user);
+      let userLog_string = JSON.stringify(userLog);
+      sessionStorage.setItem(usuario_logueado,userLog_string);
+      
+      window.location = "buscador.html"
+
+       return true
+
+}
+
+alert("Usuario o contraseña incorrectos")
+return false
+
+}
+}
+
+// Funcion utilizada para desloguear la cuenta
+
+let logOut = document.getElementById("LogOut")
+
+logOut.addEventListener("click", (e) => {
+
+  let resp = confirm("Realmente desea salir?")
+
+  if (resp) {
+    window.location="index.html"
+    sessionStorage.clear()
+
+  } else {
+    return false
+  }
+
+})
+
+//Registro de clientes//
+
+// Funcion para chequear datos ingresados del registro de cliente
+
+async function validadorDatosCliente(cliente,descripcion,presupuesto) {
 
     if (cliente == "") {
 
@@ -187,132 +173,58 @@ function validadorDatosCliente(cliente,descripcion,presupuesto) {
         alert("Ingrese un presupuesto, recuerda que el presupuesto tiene que ser un numero")
         return false
 
-    } 
+    } else {
 
-    let rta = confirm("Ingresaste " + cliente + " - " + descripcion + " - " + "$" + presupuesto + " , es correcto?")
+      let busqueda = await buscarClienteApi(cliente,descripcion)
 
-    if (rta) {
+      if(busqueda != false) {
 
-        return true
+        alert("Este presupuesto ya está ingresado, fue ingresado por " + busqueda[0].usuario)
+        return false
 
-    } 
+      }
 
-    return false
+      let rta = confirm("Ingresaste " + cliente + " - " + descripcion + " - " + "$" + presupuesto + " , es correcto?")
 
+      if (rta) {
+  
+          return true
+  
+      } 
+  
+      return false
+
+    }
     
-}
-
-// Funcion para buscar clientes en local storage
-
-function buscar_empresa(empresa) {
-
-    if (!localStorage.getItem(lista_de_clientes)) {
-
-       return false
-
-   } 
-   
-   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_clientes))
-   let encontrado = false
-   let i = 0;
-
-   while (!encontrado && i != arrayLocal.length ){
-
-   if (arrayLocal[i].empresa == empresa) {
-
-    encontrado = arrayLocal[i].empresa;
-
-   }
-
-   i++;
-
- }
-
- return encontrado;
-
-}
-
-function buscar_descripcion(descripcion) {
-
-    if (!localStorage.getItem(lista_de_clientes)) {
-
-       return false
-
-   } 
-   
-   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_clientes))
-   let encontrado = false
-   let i = 0;
-
-   while (!encontrado && i != arrayLocal.length ){
-
-   if (arrayLocal[i].descripcion == descripcion) {
-
-    encontrado = arrayLocal[i].descripcion;
-
-   }
-
-   i++;
-
- }
-
- return encontrado;
-
-}
-
-function buscar_presupuesto(presupuesto) {
-
-    if (!localStorage.getItem(lista_de_clientes)) {
-
-       return false
-
-   } 
-   
-   let arrayLocal = JSON.parse(localStorage.getItem(lista_de_clientes))
-   let encontrado = false
-   let i = 0;
-
-   while (!encontrado && i != arrayLocal.length ){
-
-   if (arrayLocal[i].presupuesto == presupuesto) {
-
-    encontrado = arrayLocal[i].presupuesto;
-
-   }
-
-   i++;
-
- }
-
- return encontrado;
-
 }
 
 // Funcion para registrar un nuevo cliente
 
-function registrarClienteNuevo(nuevo_cliente){
+async function registrarClienteNuevo(nuevo_cliente){
 
-    let item = localStorage.getItem(lista_de_clientes);
-    if (item){
-  
-      let clientesAlmacenados = JSON.parse(localStorage.getItem(lista_de_clientes));
-      clientesAlmacenados.push(nuevo_cliente);
-  
-      let clientesAlmacenados_string = JSON.stringify(clientesAlmacenados);
-      localStorage.setItem(lista_de_clientes,clientesAlmacenados_string);
-  
-    }else{
-  
-      let clientesAlmacenados = new Array();
-      clientesAlmacenados.push(nuevo_cliente);
-      let clientesAlmacenados_string = JSON.stringify(clientesAlmacenados);
-      localStorage.setItem(lista_de_clientes,clientesAlmacenados_string);
-  
-    }
+  let sessionLog = JSON.parse(sessionStorage.getItem(usuario_logueado))
+  let userSession = sessionLog[0]
 
-  }
+  await fetch(apiRegClient, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "usuario": userSession,
+      "cliente": nuevo_cliente.empresa,
+      "descripcion": nuevo_cliente.descripcion,
+      "presupuesto_inicial": nuevo_cliente.presupuesto,
+      "estado": nuevo_cliente.activo,
+      "presupuesto_restante": nuevo_cliente.presupuesto
+ 
+    })
+  })
+}
 
-// Funcion para validar datos del Monto
+
+// Funcion para validar datos del gasto
 
 function validadorDatosMonto(buscarCliente,buscarID,monto,comentario) {
 
@@ -351,23 +263,59 @@ if (buscarCliente == "") {
     
 }
 
-function registrarGastoNuevo(nuevo_gasto){
+async function registrarGastoNuevo(nuevo_gasto){
 
-    let item = localStorage.getItem(lista_de_gastos);
-    if (item){
+  let sessionLog = JSON.parse(sessionStorage.getItem(usuario_logueado))
+  let userSession = sessionLog[0]
   
-      let gastosAlmacenados = JSON.parse(localStorage.getItem(lista_de_gastos));
-      gastosAlmacenados.push(nuevo_gasto);
-  
-      let gastosAlmacenados_string = JSON.stringify(gastosAlmacenados);
-      localStorage.setItem(lista_de_gastos,gastosAlmacenados_string);
-  
-    }else{
-  
-      let gastosAlmacenados = new Array();
-      gastosAlmacenados.push(nuevo_gasto);
-      let gastosAlmacenados_string = JSON.stringify(gastosAlmacenados);
-      localStorage.setItem(lista_de_gastos,gastosAlmacenados_string);
-  
-    }
-  }
+  await fetch(apiGastos, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "usuario": userSession,
+      "cliente": nuevo_gasto.cliente,
+      "descripcion": nuevo_gasto.descripcion,
+      "comentario": nuevo_gasto.comentario,
+      "gasto": nuevo_gasto.gasto
+
+    })
+  })
+
+  let arregloClientes = await fetch(apiRegClient)
+  let arregloParseado = await arregloClientes.json()
+
+  let arregloClientesFiltrado = arregloParseado.filter((e) => e.cliente.includes(nuevo_gasto.cliente))
+
+  let arregloClientesDescripcion = arregloClientesFiltrado.filter((e) => e.descripcion.includes(nuevo_gasto.descripcion))
+
+  let presupuestoR = parseFloat(arregloClientesDescripcion[0].presupuesto_restante)
+
+  presupuestoR -= parseFloat(nuevo_gasto.gasto)
+
+  console.log(presupuestoR)
+
+  let indice = arregloParseado.findIndex(elemento => {
+
+    return elemento.cliente === arregloClientesDescripcion[0].cliente && elemento.descripcion === arregloClientesDescripcion[0].descripcion
+
+  })
+
+    await fetch(apiRegClient+"/"+indice, {
+    method: "PATCH",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "presupuesto_restante": presupuestoR
+
+    })
+
+  })
+
+  alert("Todavia queda disponible $" + presupuestoR)
+
+}

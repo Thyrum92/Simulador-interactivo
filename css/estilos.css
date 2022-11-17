@@ -76,6 +76,12 @@ footer {
   width: 250px;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .iconMenu {
   margin: 40x 50x;
   position: relative;
@@ -89,7 +95,7 @@ footer {
 }
 
 .contenMenu {
-  background-color: rgb(6, 65, 120);
+  background-color: rgb(86, 96, 105);
   box-shadow: rgb(66, 66, 66);
   width: 300px;
   height: 700px;

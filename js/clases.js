@@ -1,17 +1,24 @@
+// Declaracion de constantes de API de registro de users, clientes y gastos
+/**
+ * apiReg: Api para registro de usuarios
+ * apiRegClient: Api para registro de clientes
+ * apiGastos: Api para registro de gastos
+ */
+const apiReg = "https://sheet.best/api/sheets/5a65b8be-acd1-4263-bbc9-c946d0b379e3"
+const apiRegClient = "https://sheet.best/api/sheets/68f83d4b-9cec-4fef-b014-ae4d6a8f50d1"
+const apiGastos = "https://sheet.best/api/sheets/45fcc54b-bea4-4949-9090-3edfa959b738"
 
 // Clase usuario para login y registro de usuario
 
 class Usuario{
     constructor(nuevo_user) {
-        this.mail = nuevo_user.mail
         this.user = nuevo_user.user
         this.pass = nuevo_user.pass
     }
 }
 
 class User {
-    constructor(mail,user,pass) {
-        this.mail = mail
+    constructor(user,pass) {
         this.user = user
         this.pass = pass
     }
@@ -26,20 +33,7 @@ class Cliente {
         this.empresa = nuevo_cliente.empresa
         this.descripcion = nuevo_cliente.descripcion
         this.presupuesto = nuevo_cliente.presupuesto
-        this.id = nuevo_cliente.id
         this.activo = nuevo_cliente.activo
-
-    }
-
-    nuevoGasto(monto) {
-
-        this.gasto = monto
-
-    }
-
-    mostrarDescripcion() {
-
-        return (this.id + " - " + this.empresa + " - " + this.descripcion + " - " + this.presupuesto + " - " + this.activo)
 
     }
 
@@ -52,21 +46,7 @@ class Client {
         this.empresa = empresa
         this.descripcion = descripcion
         this.presupuesto = presupuesto
-        this.id = -1
-        this.activo = -1
-
-    }
-
-    setID(nuevoID) {
-
-        this.id = nuevoID
         this.activo = true
-
-    }
-
-    mostrarDescripcion() {
-
-        return (this.id + " - " + this.empresa + " - " + this.descripcion + " - " + this.presupuesto + " - " + this.activo)
 
     }
 
@@ -77,34 +57,19 @@ class Client {
 
 class Gasto {
 
-    constructor (empresa, descripcion, gasto , descripcionGasto) {
+    constructor (cliente, descripcion, gasto , comentario) {
 
-        this.empresa = empresa;
+        this.cliente = cliente;
         this.descripcion = descripcion;
         this.gasto = gasto ;
-        this.descripcionGasto = descripcionGasto ;
+        this.comentario = comentario ;
         
     }
 
-    mostrarGasto() {
-
-        return ("ingresaste " + this.empresa + " - " + this.descripcion + " $" + this.gasto + " que corresponde a " + this.descripcionGasto)
-
-    }
-
-}
-
-class Gastos {
-    constructor(nuevo_gasto) {
-
-        this.empresa = nuevo_gasto.empresa;
-        this.descripcion = nuevo_gasto.descripcion;
-        this.gasto = nuevo_gasto.gasto
-        this.descripcionGasto = nuevo_gasto.descripcionGasto
-
-    }
 }
 
 // Arreglos
 
 const listaClientes = new Array() ;
+
+

@@ -3,7 +3,9 @@ let inputTrabajo = document.getElementById("trabajo")
 let inputPresupuesto = document.getElementById("presupuesto")
 let botonIngreso = document.getElementById("botonIngreso")
 
-botonIngreso.addEventListener("click", (e) => {
+// Evento de click para ingresar un cliente nuevo en la base de datos
+
+botonIngreso.addEventListener("click", async (e) => {
 
     e.preventDefault()
 
@@ -11,15 +13,12 @@ botonIngreso.addEventListener("click", (e) => {
     let descripcion = inputTrabajo.value
     let presupuesto = inputPresupuesto.value
 
-    if (validadorDatosCliente(empresa,descripcion,presupuesto)) {
+    if (await validadorDatosCliente(empresa,descripcion,presupuesto)) {
 
-        let ID = 1
         let nuevo_cliente = new Client(empresa,descripcion,presupuesto)
-        nuevo_cliente.setID(ID)
         let client_new = new Cliente(nuevo_cliente)
 
-        registrarClienteNuevo(client_new)
-        ID++
+        await registrarClienteNuevo(client_new)
         alert("Cliente creado correctamente")
     }
 })
